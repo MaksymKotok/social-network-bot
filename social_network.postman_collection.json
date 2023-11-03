@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "9e9084bf-13eb-4bb3-9b7c-4c6190428449",
+		"name": "Social Network",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16202797"
+	},
+	"item": [
+		{
+			"name": "Sign up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\n//     \"username\": \"in_rainbows\",\n//     \"first_name\": \"Jonny\",\n//     \"last_name\": \"Greenwood\",\n//     \"email\": \"radiohead@gmail.com\",\n//     \"password\": \"1234Test1234\",\n//     \"re_password\": \"1234Test1234\"\n// }\n\n// {\n//     \"username\": \"hail_to_the_thief\",\n//     \"first_name\": \"Ed\",\n//     \"last_name\": \"O'Brien\",\n//     \"email\": \"eeeed@gmail.com\",\n//     \"password\": \"1234Test1234\",\n//     \"re_password\": \"1234Test1234\"\n// }\n\n{\n    \"username\": \"king_of_limbs\",\n    \"first_name\": \"Philip\",\n    \"last_name\": \"Selway\",\n    \"email\": \"drums@gmail.com\",\n    \"password\": \"1234Test1234\",\n    \"re_password\": \"1234Test1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/users/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain Token Pair",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    // \"email\": \"radiohead@gmail.com\",\n    \"email\": \"eeeed@gmail.com\",\n    // \"email\": \"drums@gmail.com\",\n    \"password\": \"1234Test1234\"\n    // \"email\": \"admin@gmail.com\",\n    // \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/jwt/create/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"jwt",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk4OTc3MTIwLCJpYXQiOjE2OTg5NjI3MjAsImp0aSI6IjM4MWY2NWZkOTI0NDRkMWU5ZjRlOTE2ZGQzODIzYmQxIiwidXNlcl9pZCI6NH0.0drPqkcOeGewBjqBu2g4aT293TEQF4D3qlwgr6HmaiI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Test 1\",\n    \"text\": \"Lorem ipsum etc.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/post/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"post",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Post",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"author\": 1,\n    \"name\": \"Test 1\",\n    \"text\": \"Lorem ipsum etc.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/post/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"post",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk4OTgzODU5LCJpYXQiOjE2OTg5Njk0NTksImp0aSI6ImE0MzBhMTEwNzUyOTQyM2Q4ZTdlZWM4Y2I4NTEzNzNjIiwidXNlcl9pZCI6M30.DzUKYCcJ8sgcRJO7hKfg5__MN0c_ZR50QGeTyEUw2q4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/post/4/like/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"post",
+						"4",
+						"like",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unlike Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk4OTc3MTIwLCJpYXQiOjE2OTg5NjI3MjAsImp0aSI6IjM4MWY2NWZkOTI0NDRkMWU5ZjRlOTE2ZGQzODIzYmQxIiwidXNlcl9pZCI6NH0.0drPqkcOeGewBjqBu2g4aT293TEQF4D3qlwgr6HmaiI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/post/1/like/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"post",
+						"1",
+						"like",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like analytics",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk4OTgwOTY3LCJpYXQiOjE2OTg5NjY1NjcsImp0aSI6ImYwYjM5N2E2NDhhNTQwYzc5MDhhOGY1ZjUxYWZjNDhmIiwidXNlcl9pZCI6Mn0.NL375Cu9IkgfxD2t6HrBixGIQWitbILtTKqK_jkdnG8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/analytics/post/?date_from=2023-11-01&date_to=2023-11-03",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"analytics",
+						"post",
+						""
+					],
+					"query": [
+						{
+							"key": "date_from",
+							"value": "2023-11-01"
+						},
+						{
+							"key": "date_to",
+							"value": "2023-11-03"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Activity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk4OTgwOTY3LCJpYXQiOjE2OTg5NjY1NjcsImp0aSI6ImYwYjM5N2E2NDhhNTQwYzc5MDhhOGY1ZjUxYWZjNDhmIiwidXNlcl9pZCI6Mn0.NL375Cu9IkgfxD2t6HrBixGIQWitbILtTKqK_jkdnG8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/analytics/user/activity/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"analytics",
+						"user",
+						"activity",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

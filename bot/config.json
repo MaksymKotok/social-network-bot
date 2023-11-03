@@ -1,0 +1,8 @@
+{
+    "number_of_users": 4,
+    "max_posts_per_user": 3,
+    "max_likes_per_user": 7,
+    "sign_up_url": "http://127.0.0.1:8000/auth/users/",
+    "auth_url": "http://127.0.0.1:8000/auth/jwt/create/",
+    "post_url": "http://127.0.0.1:8000/post/"
+}
